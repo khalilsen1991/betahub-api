@@ -1,0 +1,367 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Scaffolding Api",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/guilds": {
+      "get": {
+        "tags": [
+          "guilds"
+        ],
+        "summary": "Finds Guilds",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Guilds"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/member/{guildId}/{memberId}": {
+      "get": {
+        "tags": [
+          "members"
+        ],
+        "summary": "Get member by discord and memberId",
+        "parameters": [
+          {
+            "name": "guildId",
+            "in": "path",
+            "description": "ID of guild id in discord",
+            "example": "615683351067623480",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "memberId",
+            "in": "path",
+            "description": "ID of member id in discord",
+            "example": "448993568393265150",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Members"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/member/{guildId}": {
+      "post": {
+        "tags": [
+          "members"
+        ],
+        "summary": "Post a new member",
+        "parameters": [
+          {
+            "name": "guildId",
+            "in": "path",
+            "description": "ID of guild id in discord",
+            "example": "615683351067623480",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Created a member object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Members"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Members"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Should return \"Member already exist\"",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Guilds": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "guildName": {
+            "type": "string"
+          },
+          "guildId": {
+            "type": "string",
+            "description": "Guild ID from discord"
+          },
+          "clientId": {
+            "type": "string"
+          },
+          "TOKEN": {
+            "type": "string"
+          },
+          "prefix": {
+            "type": "string"
+          },
+          "roleStaffId": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": [
+                "str1",
+                "str2",
+                "str3"
+              ]
+            }
+          },
+          "verificationRoleId": {
+            "type": "string"
+          },
+          "generalChannelsIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": [
+                "str1",
+                "str2",
+                "str3"
+              ]
+            }
+          },
+          "allowChannelsIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": [
+                "str1",
+                "str2",
+                "str3"
+              ]
+            }
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Members": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "guildId": {
+            "example": "615683351067623480",
+            "type": "string"
+          },
+          "guild": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "example": "615683351067623480",
+                "type": "string"
+              },
+              "name": {
+                "example": "CFA Test Server",
+                "type": "string"
+              },
+              "icon": {
+                "example": "d4d8e676e3abf4ea2b483e993a20c503",
+                "type": "string"
+              },
+              "features": {
+                "type": "array",
+                "example": [
+                  "str1",
+                  "str2",
+                  "str3"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              },
+              "available": {
+                "type": "boolean"
+              },
+              "shardId": {
+                "example": 0,
+                "type": "number"
+              },
+              "banner": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "verificationLevel": {
+                "type": "number"
+              },
+              "vanityURLCode": {
+                "type": "string"
+              },
+              "memberCount": {
+                "example": 41,
+                "type": "number"
+              },
+              "systemChannelId": {
+                "example": "615683351067623486",
+                "type": "string"
+              },
+              "joinedTimestamp": {
+                "example": 1664904241852,
+                "type": "number"
+              }
+            }
+          },
+          "joinedTimestamp": {
+            "type": "number"
+          },
+          "premiumSinceTimestamp": {
+            "type": "number"
+          },
+          "nickname": {
+            "type": "string"
+          },
+          "pending": {
+            "type": "boolean"
+          },
+          "communicationDisabledUntilTimestamp": {
+            "type": "number"
+          },
+          "roles": {
+            "type": "array",
+            "example": [
+              "str1",
+              "str2",
+              "str3"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "example": 448993568393265150,
+                "type": "string"
+              },
+              "bot": {
+                "example": false,
+                "type": "boolean"
+              },
+              "system": {
+                "example": false,
+                "type": "boolean"
+              },
+              "flags": {
+                "example": 0,
+                "type": "number"
+              },
+              "username": {
+                "example": "Pereza Insana",
+                "type": "string"
+              },
+              "discriminator": {
+                "example": "7017",
+                "type": "string"
+              },
+              "avatar": {
+                "example": "9460d5b5432c71fe9210f6c8d53d1bda",
+                "type": "string"
+              }
+            }
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "leftGuildDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}

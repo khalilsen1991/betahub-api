@@ -1,0 +1,1 @@
+[Esquema base de datos](https://excalidraw.com/#room=b5fb8e3a7d88fc1aef11,MJFleoENPIpdPdfh9xEK5Q)

@@ -1,0 +1,4 @@
+NODE_ENV=development
+PORT=5000
+MONGODB_NAME=event-database.kkdhnwh.mongodb.net/
+MONGODB_URL=mongodb+srv://bot1234:bot1234@

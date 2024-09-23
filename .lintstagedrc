@@ -1,0 +1,7 @@
+{
+    "src/**/*.{js,ts,jsx,tsx}": [
+      "yarn lint:fix",
+      "yarn build",
+      "git add --all"
+    ]
+}
