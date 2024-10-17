@@ -28,6 +28,7 @@ const schema = new Schema({
 			type: String,
 		},
 	],
+	logsChannelId: { type: String },
 	allowChannelsIds: [{
 		type: String,
 	}],

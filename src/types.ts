@@ -26,6 +26,7 @@ export const GuildSchema = {
 	memberCount: { type: Number },
 	systemChannelId: { type: String },
 	joinedTimestamp: { type: Number },
+	logsChannelId: { type: String },
 	enabled: { type: Boolean, default: true },
 }
 
